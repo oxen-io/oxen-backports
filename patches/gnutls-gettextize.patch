@@ -1,0 +1,11 @@
+diff -uNr debian.old/rules debian/rules
+--- a/debian/rules	2024-01-18 16:26:38.246870144 -0400
++++ b/debian/rules	2024-01-18 16:26:14.834690147 -0400
+@@ -33,6 +33,7 @@
+ 
+ override_dh_autoreconf:
+ 	grep -rl --null gettext-0.20 m4/ | xargs -0r rm -v
++	gettextize -f
+ 	if ! dh_listpackages | grep -q gnutls-doc ; \
+ 		then env GTKDOCIZE="echo DISABLED running gtkdocize" \
+ 			dh_autoreconf --verbose $(BDIR) ; \

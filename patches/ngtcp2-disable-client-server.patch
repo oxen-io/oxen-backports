@@ -1,0 +1,57 @@
+diff -uNr a/debian/control b/debian/control
+--- a/debian/control	2024-01-08 10:35:37.000000000 -0400
++++ b/debian/control	2024-01-18 15:26:50.203387169 -0400
+@@ -67,30 +67,3 @@
+  now being discussed in IETF QUICWG for its standardization.
+  .
+  This package contains the development files.
+-
+-Package: ngtcp2-client
+-Architecture: any
+-Multi-Arch: foreign
+-Depends:
+- libngtcp2-16 (= ${binary:Version}),
+- ${misc:Depends},
+- ${shlibs:Depends},
+-Description: implementation of QUIC protocol (development)
+- ngtcp2 project is an effort to implement QUIC protocol which is
+- now being discussed in IETF QUICWG for its standardization.
+- .
+- This package contains the ngtcp2 client.
+-
+-Package: ngtcp2-server
+-Architecture: any
+-Multi-Arch: foreign
+-Depends:
+- libngtcp2-16 (= ${binary:Version}),
+- ssl-cert,
+- ${misc:Depends},
+- ${shlibs:Depends},
+-Description: implementation of QUIC protocol (development)
+- ngtcp2 project is an effort to implement QUIC protocol which is
+- now being discussed in IETF QUICWG for its standardization.
+- .
+- This package contains the ngtcp server.
+diff -uNr a/debian/rules b/debian/rules
+--- a/debian/rules	2024-01-08 10:35:37.000000000 -0400
++++ b/debian/rules	2024-01-18 15:26:33.155256663 -0400
+@@ -7,14 +7,8 @@
+ 	dh_auto_configure -- \
+ 		--with-gnutls
+ 
+-execute_after_dh_prep:
+-	chrpath -d examples/gtlsserver
+-	chrpath -d examples/gtlsclient
+-
+ execute_before_dh_install:
+ 	mkdir -p debian/tmp/usr/sbin debian/tmp/usr/bin debian/tmp/usr/share/ngtcp2d/html
+-	mv examples/gtlsserver debian/tmp/usr/sbin
+-	mv examples/gtlsclient debian/tmp/usr/bin
+ 
+ execute_after_dh_install:
+ 	rm -f debian/tmp/usr/lib/*/*.la
+diff -uNr a/debian/not-installed b/debian/not-installed
+--- a/debian/not-installed	1969-12-31 20:00:00.000000000 -0400
++++ b/debian/not-installed	2024-01-18 18:50:24.652798106 -0400
+@@ -0,0 +1 @@
++usr/share/doc/ngtcp2/README.rst
