@@ -19,7 +19,7 @@ set -o xtrace  # Don't start tracing until *after* we write the ssh key
 
 chmod 600 ssh_key
 
-distro="$1"
+distro="${1/*\/}"
 debarch="$2"
 
 if [ -z "$distro" ] || [ -z "$debarch" ]; then
