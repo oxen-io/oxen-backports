@@ -19,7 +19,8 @@ set -o xtrace  # Don't start tracing until *after* we write the ssh key
 
 chmod 600 ssh_key
 
-distro="${1/*\/}"
+distro="${1/\//-}"
+codename="${distro/*-}"
 debarch="$2"
 
 if [ -z "$distro" ] || [ -z "$debarch" ]; then
@@ -27,11 +28,11 @@ if [ -z "$distro" ] || [ -z "$debarch" ]; then
     false
 fi
 
-base="deb-$distro-$(date --date=@$DRONE_BUILD_CREATED +%Y%m%dT%H%M%SZ)-${DRONE_COMMIT:0:9}"
+base="deb-$codename-$(date --date=@$DRONE_BUILD_CREATED +%Y%m%dT%H%M%SZ)-${DRONE_COMMIT:0:9}"
 
 br="${DRONE_BRANCH// /_}"
 br="${br//\//-}"
-upload_to="builds.lokinet.dev/${DRONE_REPO// /_}/$br/$base"
+upload_to="builds.lokinet.dev/${DRONE_REPO// /_}/$br/$distro/$base"
 
 shopt -s nullglob
 
