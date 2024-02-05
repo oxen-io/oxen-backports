@@ -44,6 +44,11 @@ if [ "$debarch" = "amd64" ]; then
 fi
 
 if [ "${#debs[@]}" -eq 0 ]; then
+    if [ -f build/no_debs_today ]; then
+        echo -e "\e[35;1mBuild skipped; nothing to upload.\e[0m"
+        exit 0
+    fi
+
     echo -e "\n\n\n\n\e[31;1mError: found no debs to upload!\e[0m\n\n\n"
     false
 fi

@@ -5,6 +5,8 @@
 v=1.1.0-1
 oxen='~oxen1'
 
+check_already_in_repo libngtcp2-dev $v $codename $oxen
+
 # If we have dependency backport debs sitting here from previous steps then install them first
 installdebs {libhogweed6,libnettle8,nettle-dev,libgnutls28-dev,libgnutls30,libgnutls-dane0,libgnutls-openssl27}_*_$arch.deb
 

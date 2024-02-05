@@ -109,3 +109,28 @@ installdebs() {
     dpkg --force-depends -i "$@"
     $apt_get install -f -y
 }
+
+check_already_in_repo() {
+    # Call with: pkgname 1.2.3-1 sid ~oxen1
+    # Args are:
+    # $1 - package name
+    # $2 - package version (without ~oxen or distro suffix)
+    # $3 - distro codename
+    # $4 - oxen suffix, e.g. ~oxen1
+    #
+    # Prints a status line and exits with success if the package of the given version (or higher) is
+    # already available.
+    latestv=$(apt-cache policy "$1" | grep Candidate: | sed -e 's/^ *Candidate: //')
+    if [ -z "$latestv" ]; then
+        return
+    fi
+
+    codename=$3
+    ver="$2${4:-~oxen1}${version_suffix[$codename]}"
+
+    if dpkg --compare-versions "$latestv" ">=" "$ver"; then
+        touch no_debs_today
+        echo -e "\e[35;1m$1 >=$ver is already available in configured repositories, skipping build.\e[0m"
+        exit 0
+    fi
+}

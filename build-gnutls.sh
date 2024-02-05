@@ -5,6 +5,8 @@
 v=3.8.3-1
 oxen='~oxen1'
 
+check_already_in_repo libgnutls28-dev $v $codename $oxen
+
 # If we built nettle, install it
 installdebs {libhogweed6,libnettle8,nettle-dev}_*_$arch.deb
 
