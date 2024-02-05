@@ -27,6 +27,7 @@ declare -A version_suffix=(
     [jammy]='~ubuntu2204'
     [lunar]='~ubuntu2304'
     [mantic]='~ubuntu2310'
+    [noble]='~ubuntu2404'
 )
 
 export PATH="/usr/lib/ccache:$PATH"

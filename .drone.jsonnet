@@ -40,11 +40,17 @@ scripts_for([
               'debian/sid',
               'debian/trixie',
               'debian/bookworm',
+            ],
+            ['amd64', 'arm64', 'i386', 'armhf'],
+            ['ngtcp2'],
+            ['experimental']) +
+scripts_for([
+              'ubuntu/noble',
               'ubuntu/mantic',
               'ubuntu/lunar',
               'ubuntu/jammy',
             ],
-            ['amd64', 'arm64', 'i386', 'armhf'],
+            ['amd64', 'arm64', 'armhf'],
             ['ngtcp2'],
             ['experimental']) +
 scripts_for([
