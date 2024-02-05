@@ -3,7 +3,7 @@
 . common.sh
 
 v=1.0.19-1
-oxen='~oxen1'
+oxen='~oxen2'
 
 check_already_in_repo libsodium-dev $v $codename $oxen
 

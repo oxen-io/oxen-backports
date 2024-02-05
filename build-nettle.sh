@@ -3,7 +3,7 @@
 . common.sh
 
 v=3.9.1-2
-oxen='~oxen1'
+oxen='~oxen2'
 
 check_already_in_repo nettle-dev $v $codename $oxen
 
