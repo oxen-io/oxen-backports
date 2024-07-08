@@ -37,13 +37,11 @@ local scripts_for(distros, arches, scripts, add_source_repo=[], jobs=0) = [
 
 
 scripts_for([
-              'debian/sid',
-              'debian/trixie',
               'debian/bookworm',
             ],
             ['amd64', 'arm64', 'i386', 'armhf'],
             ['ngtcp2'],
-            ['experimental']) +
+            ['trixie']) +
 scripts_for([
               'ubuntu/noble',
               'ubuntu/mantic',
@@ -52,24 +50,17 @@ scripts_for([
             ],
             ['amd64', 'arm64', 'armhf'],
             ['ngtcp2'],
-            ['experimental']) +
+            ['trixie']) +
 scripts_for([
               'debian/bullseye',
             ],
             ['amd64'],
             ['gnutls', 'ngtcp2'],
-            ['experimental', 'sid']) +
+            ['bookworm', 'trixie']) +
 scripts_for([
               'ubuntu/focal',
             ],
             ['amd64'],
             ['nettle', 'gnutls', 'ngtcp2'],
-            ['experimental', 'sid']) +
-scripts_for([
-              'debian/buster',
-              'ubuntu/bionic',
-            ],
-            ['amd64'],
-            ['nettle', 'gnutls', 'ngtcp2', 'libsodium'],
-            ['experimental', 'sid']) +
+            ['bookworm', 'trixie']) +
 []

@@ -2,8 +2,8 @@
 
 . common.sh
 
-v=3.8.3-1
-oxen='~oxen2'
+v=3.7.9-2+deb12u3
+oxen='~oxen1'
 
 check_already_in_repo libgnutls28-dev $v $codename $oxen
 
